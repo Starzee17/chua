@@ -1,0 +1,242 @@
+
+================================================================================
+ZIPS CHAU E-LIBRARY - INSTALLATION GUIDE
+================================================================================
+
+SYSTEM REQUIREMENTS:
+--------------------
+- PHP 7.4 or higher
+- MySQL 5.7 or higher
+- Apache Web Server with mod_rewrite enabled
+- At least 500MB free disk space
+- XAMPP or WAMP (recommended for Windows)
+- LAMP (recommended for Linux)
+
+================================================================================
+STEP-BY-STEP INSTALLATION
+================================================================================
+
+STEP 1: INSTALL XAMPP/WAMP
+---------------------------
+For Windows Users:
+1. Download XAMPP from https://www.apachefriends.org/
+2. Install XAMPP to C:\xampp\
+3. Start Apache and MySQL from XAMPP Control Panel
+
+For Linux Users:
+1. Install LAMP stack:
+   sudo apt-get update
+   sudo apt-get install apache2 mysql-server php libapache2-mod-php php-mysql
+
+================================================================================
+
+STEP 2: SETUP DATABASE
+----------------------
+1. Open your web browser
+2. Go to: http://localhost/phpmyadmin
+3. Click "New" to create a new database
+4. Database name: zips_chau_elibrary
+5. Collation: utf8_general_ci
+6. Click "Create"
+
+7. Import the database structure:
+   - Click on "zips_chau_elibrary" database
+   - Click "Import" tab
+   - Click "Choose File"
+   - Select: database.sql
+   - Click "Go" at the bottom
+
+8. Wait for success message
+
+================================================================================
+
+STEP 3: COPY FILES TO WEB SERVER
+---------------------------------
+Windows (XAMPP):
+- Copy the entire "zips-chau-elibrary" folder to:
+  C:\xampp\htdocs\
+
+Windows (WAMP):
+- Copy the entire "zips-chau-elibrary" folder to:
+  C:\wamp64\www\
+
+Linux:
+- Copy files to: /var/www/html/
+  sudo cp -r zips-chau-elibrary /var/www/html/
+
+================================================================================
+
+STEP 4: CONFIGURE DATABASE CONNECTION
+--------------------------------------
+1. Open the file: config.php
+2. Check/Update these settings:
+
+   define('DB_HOST', 'localhost');     // Usually 'localhost'
+   define('DB_USER', 'root');          // Default is 'root'
+   define('DB_PASS', '');              // Default is empty
+   define('DB_NAME', 'zips_chau_elibrary');
+
+3. Save the file
+
+================================================================================
+
+STEP 5: SET FILE PERMISSIONS (Linux/Mac only)
+----------------------------------------------
+Open terminal and run:
+
+cd /var/www/html/zips-chau-elibrary
+sudo chmod -R 755 .
+sudo chmod -R 777 uploads/
+sudo chown -R www-data:www-data .
+
+================================================================================
+
+STEP 6: TEST THE INSTALLATION
+------------------------------
+1. Open web browser
+2. Go to: http://localhost/zips-chau-elibrary/
+
+3. You should see the login page
+4. Enter PIN: zips2025
+5. Click "Access Library"
+
+If successful, you'll see the dashboard!
+
+================================================================================
+
+STEP 7: ACCESS ADMIN PANEL
+---------------------------
+1. Go to: http://localhost/zips-chau-elibrary/admin/
+
+2. Login with default credentials:
+   Username: admin
+   Password: admin123
+
+3. IMPORTANT: Change the password immediately!
+
+================================================================================
+
+POST-INSTALLATION TASKS
+========================
+
+1. CHANGE ADMIN PASSWORD
+   - Login to admin panel
+   - Go to profile/settings (create this page if needed)
+   - Change password from 'admin123' to a strong password
+
+2. CHANGE ACCESS PIN (Optional)
+   - Open config.php
+   - Find: define('ACCESS_PIN', 'zips2025');
+   - Change to your preferred PIN
+   - Save file
+
+3. TEST FILE UPLOADS
+   - Go to Admin Panel
+   - Try uploading a test module
+   - Check if file appears in uploads/modules/ folder
+
+4. CONFIGURE EMAIL (For contact form)
+   - You may need to configure PHP mail() function
+   - Or use PHPMailer for SMTP
+
+================================================================================
+
+TROUBLESHOOTING
+===============
+
+PROBLEM: "Cannot connect to database"
+SOLUTION:
+- Check if MySQL is running in XAMPP/WAMP
+- Verify database credentials in config.php
+- Make sure database 'zips_chau_elibrary' exists
+
+PROBLEM: "Access denied" when uploading files
+SOLUTION:
+- Check folder permissions on uploads/ directory
+- Make sure uploads folder exists
+- chmod 777 uploads/ (Linux/Mac)
+
+PROBLEM: Blank page or errors
+SOLUTION:
+- Enable error reporting in PHP
+- Check Apache error log
+- Verify PHP version is 7.4+
+
+PROBLEM: .htaccess not working
+SOLUTION:
+- Enable mod_rewrite in Apache
+- Check AllowOverride is set to All in httpd.conf
+
+PROBLEM: Images/CSS not loading
+SOLUTION:
+- Check file paths in code
+- Clear browser cache
+- Verify files exist in css/ and js/ folders
+
+================================================================================
+
+DEFAULT LOGIN CREDENTIALS
+==========================
+
+E-LIBRARY ACCESS:
+PIN: zips2025
+
+ADMIN PANEL:
+URL: http://localhost/zips-chau-elibrary/admin/
+Username: admin
+Password: admin123
+
+** CHANGE THESE IMMEDIATELY AFTER INSTALLATION **
+
+================================================================================
+
+CONTACT INFORMATION
+===================
+
+For support or questions:
+Email: chau@zips.com
+Facebook: Zambia Institute of Purchasing and Supply - Chalimbana University
+
+================================================================================
+
+IMPORTANT SECURITY NOTES
+=========================
+
+1. NEVER use default passwords in production
+2. Always use HTTPS (SSL) in production environment
+3. Regularly backup your database and uploads folder
+4. Keep PHP and MySQL updated
+5. Limit file upload sizes appropriately
+6. Validate and sanitize all user inputs
+7. Use strong passwords for database and admin accounts
+
+================================================================================
+
+BACKUP INSTRUCTIONS
+===================
+
+DATABASE BACKUP:
+1. Go to phpMyAdmin
+2. Select zips_chau_elibrary database
+3. Click "Export"
+4. Choose "Quick" or "Custom"
+5. Click "Go"
+6. Save the .sql file
+
+FILES BACKUP:
+- Copy entire zips-chau-elibrary folder
+- Especially the uploads/ folder
+
+Schedule regular backups (weekly recommended)
+
+================================================================================
+
+ENJOY YOUR ZIPS CHAU E-LIBRARY!
+================================
+
+For more information, see README.md
+
+© 2023-2024 ZIPS Chau E-Library
+All rights reserved.
+
+================================================================================
